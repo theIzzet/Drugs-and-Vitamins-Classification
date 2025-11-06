@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    
+    build:
+      context: . # Dockerfile'ın bulunduğu dizin 
+      dockerfile: Dockerfile
+    
+    container_name: vitamin-classification-app
+    
+    
+    ports:
+      - "80:8000" 
+    
+    restart: always
+
+    environment:
+      PYTHONUNBUFFERED: 1

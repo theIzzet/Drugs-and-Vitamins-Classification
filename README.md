@@ -124,13 +124,13 @@ Projenin yerel olarak çalıştırılması en kolay yöntem, sağlanan `Dockerfi
 1.  **Projeyi Klonlayın:**
 
     ```bash
-    git clone https://github.com/KULLANICI_ADINIZ/REPO_ADINIZ.git
-    cd REPO_ADINIZ
+    git clone https://github.com/theIzzet/Drugs-and-Vitamins-Classification.git
+    
     ```
 
-    *(`KULLANICI_ADINIZ` ve `REPO_ADINIZ` yerine kendi bilgilerinizi yazın.)*
+    
 
-2.  **Model Ağırlıklarını İndirin (Gerekliyse):**
+2.  **Model Ağırlıklarını İndirin :**
     `checkpoint.weights.h5` dosyasını (eğitilmiş model ağırlıkları), projenin ana dizinine yerleştirmeniz gerekmektedir.
 
 3.  **Uygulamayı Oluşturun ve Başlatın:**

@@ -1,4 +1,6 @@
-Harika bir proje\! İlaç/Vitamin Sınıflandırma projeniz için, GitHub'a attığınızda projenizi en iyi şekilde tanıtacak, açık ve anlaşılır bir **README.md** dosyası oluşturalım.
+Harika\! Eğitim sürecinizin çıktısını ve model değerlendirme sonuçlarını **README.md** dosyasına ekleyerek projenizin performansını net bir şekilde gösterebiliriz. Bu bölümü "Model Performansı ve Sonuçlar" başlığı altında ekleyelim.
+
+Aşağıda, eklemeler yapılmış güncellenmiş **README.md** dosyasını bulabilirsiniz.
 
 -----
 
@@ -53,8 +55,7 @@ Bu proje için kullanılan veri seti Kaggle platformundan alınmıştır:
 
   * **Temel Model:** **MobileNetV2** mimarisi, büyük bir görüntü veri seti olan **ImageNet** üzerinde eğitilmiş ağırlıklarla yüklenir.
   * **Katman Dondurma:** MobileNetV2'nin convolutional (evrişimsel) katmanları **dondurulur** (`pretrained_model.trainable = False`). Bu, önceden öğrenilmiş düşük seviyeli özellikleri korur.
-  * **Sınıflandırma Başlığı:** Dondurulmuş temel modelin üzerine, bu projenin 10 sınıfına uygun yeni **Dense** (Tam Bağlantılı) katmanları eklenir. Bu katmanlar, MobileNetV2'den gelen özellikleri kullanarak ilaçları sınıflandırmayı öğrenir.
-      * `Dense(256, activation="relu")` -\> `Dropout(0.2)` -\> `Dense(256, activation="relu")` -\> `Dropout(0.2)` -\> `Dense(10, activation="softmax")`
+  * **Sınıflandırma Başlığı:** Dondurulmuş temel modelin üzerine, bu projenin 10 sınıfına uygun yeni **Dense** (Tam Bağlantılı) katmanları eklenir.
 
 ### 4\. Eğitim ve Optimizasyon
 
@@ -63,9 +64,54 @@ Bu proje için kullanılan veri seti Kaggle platformundan alınmıştır:
       * **`ModelCheckpoint`:** En iyi doğrulama doğruluğuna (`val_accuracy`) sahip model ağırlıkları `checkpoint.weights.h5` dosyasına kaydedilir.
       * **`EarlyStopping`:** Doğrulama kaybı (`val_loss`) 5 epoch boyunca iyileşmezse (düşmezse) eğitimi durdurarak aşırı öğrenmeyi (overfitting) önler.
 
-### 5\. Değerlendirme
+-----
 
-Modelin performansı, ayrılan test kümesi üzerinde `model.evaluate` ve `classification_report` kullanılarak kapsamlı bir şekilde değerlendirilir.
+## 📈 Model Performansı ve Sonuçlar
+
+Eğitim sürecinde elde edilen performans metrikleri ve grafikler aşağıdadır. Model, 10 epoch boyunca eğitilmiş ve test kümesinde yüksek bir doğruluk oranı elde etmiştir.
+
+### Eğitim ve Doğrulama Grafikleri
+
+Aşağıdaki grafikler, modelin eğitim ve doğrulama veri setlerindeki **Doğruluk (Accuracy)** ve **Kayıp (Loss)** değerlerinin 10 epoch boyunca nasıl değiştiğini göstermektedir.
+
+  * **Doğruluk Grafiği:** Eğitim doğruluğu sürekli yükselirken, doğrulama doğruluğu da 5. epoktan sonra yavaşlayarak yaklaşık **%84** seviyelerinde dengelenmiştir. Bu, modelin genelleme yeteneğinin iyi olduğunu gösterir.
+  * **Kayıp Grafiği:** Hem eğitim hem de doğrulama kayıpları istikrarlı bir şekilde düşerek modelin öğrenme sürecinin başarılı olduğunu göstermektedir.
+
+### Nihai Test Sonuçları
+
+Eğitimden sonra, modelin daha önce görmediği test veri kümesi üzerindeki sonuçları:
+
+| Metrik | Değer |
+| :--- | :--- |
+| **Test Kaybı (Loss)** | **0.469** |
+| **Test Doğruluğu (Accuracy)** | **%83.60** |
+
+### Sınıflandırma Raporu (Test Kümesi)
+
+Modelin her bir ilaç sınıfı için gösterdiği performans (Hassasiyet, Geri Çağırma, F1-Skoru):
+
+```
+              precision    recall  f1-score   support
+
+     Alaxan       0.83      0.88      0.85       208
+   Bactidol       0.85      0.77      0.81       202
+     Bioflu       0.91      0.81      0.86       192
+   Biogesic       0.84      0.71      0.77       201
+    DayZinc       0.91      0.84      0.87       209
+   Decolgen       0.88      0.87      0.87       186
+   Fish Oil       0.90      0.90      0.90       211
+   Kremil S       0.69      0.85      0.76       204
+    Medicol       0.89      0.91      0.90       212
+     Neozep       0.71      0.83      0.77       175
+
+   accuracy                           0.84      2000
+  macro avg       0.84      0.84      0.84      2000
+weighted avg      0.84      0.84      0.84      2000
+```
+
+  * **Genel Performans:** Model, 10 farklı ilaç sınıfını ayırt etmede ortalama **%84** doğruluk (accuracy) ile iyi bir performans sergilemiştir.
+  * **Öne Çıkanlar:** `Bioflu`, `DayZinc`, `Fish Oil` ve `Medicol` gibi sınıflarda $\ge 0.86$ F1-Skoru ile en yüksek performansı göstermiştir.
+  * **Geliştirilebilecek Alanlar:** `Kremil S` ve `Neozep` sınıfları, diğerlerine göre daha düşük **Precision** değerlerine sahip olup, potansiyel olarak geliştirme veya daha fazla veri toplama gerektirebilir.
 
 -----
 
@@ -77,7 +123,7 @@ Projenin yerel olarak çalıştırılması en kolay yöntem, sağlanan `Dockerfi
 
   * **Docker:** Sisteminize kurulu olmalıdır.
   * **Docker Compose:** Sisteminize kurulu olmalıdır (Çoğu yeni Docker kurulumu ile birlikte gelir).
-  * **Model Ağırlıkları:** `checkpoint.weights.h5` dosyasının, projenin ana dizininde mevcut olması gerekmektedir. Bu dosya, `drug_cnn.py` çalıştırıldığında oluşturulur veya GitHub'dan indirilmelidir.
+  * **Model Ağırlıkları:** `checkpoint.weights.h5` dosyasının, projenin ana dizininde mevcut olması gerekmektedir.
 
 ### Adımlar
 
@@ -91,10 +137,10 @@ Projenin yerel olarak çalıştırılması en kolay yöntem, sağlanan `Dockerfi
     *(`KULLANICI_ADINIZ` ve `REPO_ADINIZ` yerine kendi bilgilerinizi yazın.)*
 
 2.  **Model Ağırlıklarını İndirin (Gerekliyse):**
-    Eğer `checkpoint.weights.h5` dosyası klonlama sırasında gelmediyse (genellikle büyük dosyalar GitHub'a yüklenmez), bu dosyayı projeyi eğiterek (`drug_cnn.py` dosyasını çalıştırarak) veya projenin yayımlandığı harici bir depodan indirip ana dizine koymanız gerekmektedir.
+    `checkpoint.weights.h5` dosyasını (eğitilmiş model ağırlıkları), projenin ana dizinine yerleştirmeniz gerekmektedir.
 
 3.  **Uygulamayı Oluşturun ve Başlatın:**
-    Projenin ana dizinindeyken aşağıdaki komutu çalıştırın. Bu komut hem React arayüzünü (Vite kullanarak) oluşturacak hem de Python/FastAPI API'sini Docker konteyneri içinde başlatacaktır.
+    Projenin ana dizinindeyken aşağıdaki komutu çalıştırın.
 
     ```bash
     docker-compose up --build -d
@@ -109,8 +155,6 @@ Projenin yerel olarak çalıştırılması en kolay yöntem, sağlanan `Dockerfi
     ```
     http://localhost:80
     ```
-
-    *API'niz **8000** portunda çalışmasına rağmen, `docker-compose.yml` dosyasındaki yapılandırma sayesinde (port: `"80:8000"`) uygulama **80** portundan erişilebilir durumdadır.*
 
 ### Kapatma
 
@@ -149,5 +193,4 @@ FastAPI uygulamanız, tahmin işlemini gerçekleştirmek ve sınıf isimlerini s
   "success": true
 }
 ```
-
 

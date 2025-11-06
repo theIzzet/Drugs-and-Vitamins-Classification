@@ -43,7 +43,7 @@ Projede, verimli ve başarılı bir sınıflandırma modeli oluşturmak için **
 
 Bu proje için kullanılan veri seti Kaggle platformundan alınmıştır:
 
-  * **Veri Seti Adı/Link:** [Kaggle Veri Seti Linki Buraya Eklenecek] (Örn: `https://www.kaggle.com/datasets/kandij/10-vitamin-and-drug-capsule-dataset`)
+  * **Kullanılan Veri Seti :** [(https://www.kaggle.com/datasets/vencerlanz09/pharmaceutical-drugs-and-vitamins-synthetic-images)]
 
 ### 2\. Veri Hazırlama ve Artırma
 

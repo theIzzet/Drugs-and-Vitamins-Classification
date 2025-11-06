@@ -1,9 +1,3 @@
-Harika\! Eğitim sürecinizin çıktısını ve model değerlendirme sonuçlarını **README.md** dosyasına ekleyerek projenizin performansını net bir şekilde gösterebiliriz. Bu bölümü "Model Performansı ve Sonuçlar" başlığı altında ekleyelim.
-
-Aşağıda, eklemeler yapılmış güncellenmiş **README.md** dosyasını bulabilirsiniz.
-
------
-
 # 💊 İlaç/Vitamin Görüntü Sınıflandırma API'si (MobileNetV2 Transfer Öğrenimi)
 
 Bu proje, bir Görüntü İşleme (Computer Vision) modeli kullanarak 10 farklı ilaç ve vitamin türünü sınıflandıran bir **Convolutional Neural Network (CNN)** uygulamasını içerir. Model eğitimi için **Transfer Öğrenimi** metodolojisi, sunumu için ise **FastAPI** ve **React** kullanılarak tam yığın (Full-Stack) bir uygulama geliştirilmiştir. Uygulama, **Docker** ve **Docker Compose** kullanılarak kolayca dağıtılabilir hale getirilmiştir.
@@ -43,7 +37,7 @@ Projede, verimli ve başarılı bir sınıflandırma modeli oluşturmak için **
 
 Bu proje için kullanılan veri seti Kaggle platformundan alınmıştır:
 
-  * **Kullanılan Veri Seti :** [(https://www.kaggle.com/datasets/vencerlanz09/pharmaceutical-drugs-and-vitamins-synthetic-images)]
+  * **Kullanılan Veri Seti :** https://www.kaggle.com/datasets/vencerlanz09/pharmaceutical-drugs-and-vitamins-synthetic-images
 
 ### 2\. Veri Hazırlama ve Artırma
 
@@ -80,6 +74,8 @@ Aşağıdaki grafikler, modelin eğitim ve doğrulama veri setlerindeki **Doğru
 ### Nihai Test Sonuçları
 
 Eğitimden sonra, modelin daha önce görmediği test veri kümesi üzerindeki sonuçları:
+
+![Uploading Ekran görüntüsü 2025-10-25 163051.png…]()
 
 | Metrik | Değer |
 | :--- | :--- |

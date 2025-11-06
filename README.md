@@ -75,8 +75,6 @@ Aşağıdaki grafikler, modelin eğitim ve doğrulama veri setlerindeki **Doğru
 
 Eğitimden sonra, modelin daha önce görmediği test veri kümesi üzerindeki sonuçları:
 
-![Uploading Ekran görüntüsü 2025-10-25 163051.png…]()
-
 | Metrik | Değer |
 | :--- | :--- |
 | **Test Kaybı (Loss)** | **0.469** |
@@ -173,20 +171,6 @@ FastAPI uygulamanız, tahmin işlemini gerçekleştirmek ve sınıf isimlerini s
 | `GET` | `/classes` | Modelin sınıflandırdığı 10 ilacın/vitaminin isimlerini listeler. |
 | `POST` | `/api/predict` | Yüklenen bir görüntü dosyasını alır ve sınıflandırma tahminini döndürür. |
 
-### Örnek Tahmin Yanıtı
 
-```json
-{
-  "predicted_class": "Bioflu",
-  "confidence": 0.985472146,
-  "all_probabilities": {
-    "Alaxan": 0.0001234,
-    "Bactidol": 0.0000567,
-    "Bioflu": 0.985472146,
-    // ... diğer sınıflar
-    "Neozep": 0.0000987
-  },
-  "success": true
-}
-```
+
 
